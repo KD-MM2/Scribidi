@@ -1,14 +1,66 @@
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id              String       @id @unique @default(cuid())
+  email           String       @unique
+  hashed_password String
+  name            String?
+  setting         Setting?     @relation(fields: [settingId], references: [id])
+  settingId       String?
+  Transcript      Transcript[]
+}
+
+model Transcript {
+  id                  String    @id @unique @default(cuid())
+  name                String?
+  audio_file_path     String
+  audio_file_name     String
+  owner               User      @relation(fields: [userId], references: [id])
+  created             DateTime?
+  updated             DateTime?
+  diarize             Boolean?  @default(false)
+  diarized_transcript String?
+  model               String?
+  peaks               String?
+  processed           Boolean?  @default(false)
+  rttm                String?
+  summary             String?
+  transcript          String?
+  userId              String
+}
+
+model Model {
+  id              String    @id @unique @default(cuid())
+  model_name      String?
+  english_model   Boolean?  @default(false)
+  model_path      String?
+  quantized_level String?
+  Setting         Setting[]
+}
+
+model Setting {
+  id                String    @id @unique @default(cuid())
+  selected_model    Model?    @relation(fields: [modelId], references: [id])
+  selected_template Template? @relation(fields: [templateId], references: [id])
+  diarize           Boolean?  @default(false)
+  processors        Int?
+  threads           Int?
+  User              User[]
+  modelId           String?
+  templateId        String?
+}
+
+model Template {
+  id      String    @id @unique @default(cuid())
+  name    String?
+  prompt  String?
+  Setting Setting[]
 }

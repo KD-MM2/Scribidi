@@ -1,0 +1,18 @@
+{
+    "trailingComma": "es5",
+    "useTabs": true,
+    "tabWidth": 4,
+    "semi": true,
+    "singleQuote": false,
+    "plugins": [
+        "@trivago/prettier-plugin-sort-imports"
+    ],
+    "importOrder": [
+        "^react(.*)",
+        "@mui/material(.*)",
+        "@mui/icons(.*)",
+        "@/(.*)",
+        "^[./]"
+    ],
+    "importOrderSeparation": true
+}

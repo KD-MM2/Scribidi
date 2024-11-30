@@ -16,7 +16,5 @@ app.post("/api/upload", auth, upload.single("audio"), upload_file);
 app.post("/api/setup", auth, setup);
 
 httpServer.listen(env.PORT, env.HOST, () => {
-	console.log(
-		`[server]: Server is running at http://${env.HOST}:${env.PORT}`
-	);
+  console.log(`[server]: Server is running at http://${env.HOST}:${env.PORT}`);
 });

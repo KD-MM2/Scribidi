@@ -3,55 +3,55 @@
 // with the backend instead of manually writing them out
 
 export type BaseEntity = {
-	id: string;
-	createdAt: number;
+  id: string;
+  createdAt: number;
 };
 
 export type Entity<T> = {
-	[K in keyof T]: T[K];
+  [K in keyof T]: T[K];
 } & BaseEntity;
 
 export type Meta = {
-	page: number;
-	total: number;
-	totalPages: number;
+  page: number;
+  total: number;
+  totalPages: number;
 };
 
 export type Setting = Entity<{
-	id: string;
-	diarize: boolean | null;
-	processors: number | null;
-	threads: number | null;
-	modelId: string | null;
-	templateId: string | null;
+  id: string;
+  diarize: boolean | null;
+  processors: number | null;
+  threads: number | null;
+  modelId: string | null;
+  templateId: string | null;
 }>;
 
 export type User = Entity<{
-	email: string;
-	id: string;
-	name: string | null;
-	setting: Setting | null;
+  email: string;
+  id: string;
+  name: string | null;
+  setting: Setting | null;
 }>;
 
 export type AuthResponse = {
-	token: string;
-	user: User;
+  token: string;
+  user: User;
 };
 
 export type Team = Entity<{
-	name: string;
-	description: string;
+  name: string;
+  description: string;
 }>;
 
 export type Discussion = Entity<{
-	title: string;
-	body: string;
-	teamId: string;
-	author: User;
+  title: string;
+  body: string;
+  teamId: string;
+  author: User;
 }>;
 
 export type Comment = Entity<{
-	body: string;
-	discussionId: string;
-	author: User;
+  body: string;
+  discussionId: string;
+  author: User;
 }>;

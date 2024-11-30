@@ -1,26 +1,22 @@
 // src/index.ts
-import express, { Express, Request, Response } from "express";
+import { login, logout, register, me } from "./routes/auth";
+import { upload_file } from "./routes/files";
+import { setup } from "./routes/setup";
+import { app, httpServer } from "./server";
+import env from "./utils/env";
+import auth from "./utils/middleware";
+import upload from "./utils/multer";
 
-// import dotenv from "dotenv";
-import prisma from "./db";
+app.post("/api/auth/register", register);
+app.post("/api/auth/login", login);
+app.post("/api/auth/logout", auth, logout);
+app.get("/api/auth/me", auth, me);
 
-// dotenv.config();
+app.post("/api/upload", auth, upload.single("audio"), upload_file);
+app.post("/api/setup", auth, setup);
 
-const app: Express = express();
-const env = "development";
-const port = 3000;
-const domain = env === "development" ? "localhost" : "";
-
-app.get("/", async (req: Request, res: Response) => {
-	const allUsers = await main();
-	res.send(allUsers);
+httpServer.listen(env.PORT, env.HOST, () => {
+	console.log(
+		`[server]: Server is running at http://${env.HOST}:${env.PORT}`
+	);
 });
-
-app.listen(port, `${domain}`, () => {
-	console.log(`[server]: Server is running at http://${domain}:${port}`);
-});
-
-async function main() {
-	const allUsers = await prisma.user.findMany();
-	return allUsers;
-}

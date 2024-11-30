@@ -64,3 +64,16 @@ model Template {
   prompt  String?
   Setting Setting[]
 }
+
+model ExpiredToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model SystemConfig {
+  id        Int      @id @default(autoincrement())
+  inited    Boolean?  @default(false)
+  downloadedModels String[] @default([])
+}

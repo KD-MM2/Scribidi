@@ -10,11 +10,25 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.61.0",
+    "@tanstack/react-query-devtools": "^5.61.3",
+    "@types/js-cookie": "^3.0.6",
+    "@types/jsonwebtoken": "^9.0.7",
+    "antd": "^5.22.2",
+    "axios": "^1.7.7",
+    "cookies-next": "^5.0.2",
+    "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
+    "localforage": "^1.10.0",
     "node-postgres": "^0.6.2",
     "prettier": "^3.3.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-error-boundary": "^4.1.2",
+    "react-query-auth": "^2.4.1",
     "react-router-dom": "^6.28.0",
+    "react-use-websocket": "^4.11.1",
+    "socket.io-client": "^4.8.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {

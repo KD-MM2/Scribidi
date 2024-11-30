@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const NotFound = () => {
+export const NotFound = () => {
 	return (
 		<div className="flex col center">
 			<h2>Oops! Nothing to see here!</h2>
@@ -12,4 +12,3 @@ const NotFound = () => {
 	);
 };
 
-export default NotFound;
